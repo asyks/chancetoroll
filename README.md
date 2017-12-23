@@ -1,4 +1,4 @@
-# Chancetoroll
+# chancetoroll
 I play tabletop RPGs (D&D, Dungeon World, ICRPG, and the like),
 like to experiment with different rule systems, and I wanted a simple util
 for determining the probability of rolling equal to or greater than a given
