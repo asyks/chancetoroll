@@ -1,16 +1,16 @@
-from __future__ import print_function
-
 from itertools import combinations
 
+from typing import Iterable
 
-def roll_success(N, i, rolls):
+
+def roll_success(N: Iterable[int], i: int, rolls) -> bool:
     # If any rolls >= i return True
     return any(
         [j in rolls for j in N[N.index(i):]]
     )
 
 
-def success_combinations(N, k, i):
+def success_combinations(N: Iterable[int], k: int, i) -> int:
     combs = combinations(N, k)
 
     return len(
@@ -18,13 +18,15 @@ def success_combinations(N, k, i):
     )
 
 
-def total_combinations(N, k):
+def total_combinations(N: Iterable[int], k: int) -> int:
     combs = combinations(N, k)
 
     return len([roll for roll in combs])
 
 
-def calc_success_probability(typedice, numdice, targetside):
+def calc_success_probability(
+    typedice: int, numdice: int, targetside: int
+) -> float:
     N = range(1, typedice + 1)
 
     a = success_combinations(N, numdice, targetside)
@@ -36,7 +38,9 @@ def calc_success_probability(typedice, numdice, targetside):
     return probability
 
 
-def print_success_prob(typedice, numdice, targetside):
+def print_success_prob(
+    typedice: int, numdice: int, targetside: int
+) -> None:
     probability = calc_success_probability(typedice, numdice, targetside)
 
     print(

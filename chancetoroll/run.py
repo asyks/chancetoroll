@@ -1,9 +1,11 @@
+#!/usr/bin/env python
+
 import argparse
 
 from rollem import print_success_prob
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
             'Determine the probability of rolling '
