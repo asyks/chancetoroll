@@ -47,7 +47,7 @@ def print_success_prob(
     probability = calc_success_probability(typedice, numdice, targetside)
 
     print(
-        'Rolling {}d{}, probability of beating a {} = {}'.format(
+        "Rolling {}d{}, probability of beating a {} = {}".format(
             numdice,
             typedice,
             targetside,
