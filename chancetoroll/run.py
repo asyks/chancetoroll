@@ -1,10 +1,12 @@
+#!/usr/bin/env python
+
 import argparse
 
 from rollem import print_success_prob
 
 
-def main():
-    parser = argparse.ArgumentParser(
+def main() -> None:
+    parser: argparse.ArgumentParser = argparse.ArgumentParser(
         description=(
             'Determine the probability of rolling '
             'x or greater on n individual dice.'

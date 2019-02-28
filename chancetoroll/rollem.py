@@ -1,42 +1,49 @@
-from __future__ import print_function
-
 from itertools import combinations
 
+from typing import Iterable, List, Tuple
 
-def roll_success(N, i, rolls):
-    # If any rolls >= i return True
+
+Collection = List[int]
+
+
+def roll_success(N: Collection, i: int, roll: tuple) -> bool:
+    # If any roll >= i return True
     return any(
-        [j in rolls for j in N[N.index(i):]]
+        [j in roll for j in N[N.index(i):]]
     )
 
 
-def success_combinations(N, k, i):
-    combs = combinations(N, k)
+def success_combinations(N: Collection, k: int, i: int) -> int:
+    combs: Iterable[Tuple[int, ...]] = combinations(N, k)
 
     return len(
         [roll for roll in combs if roll_success(N, i, roll)]
     )
 
 
-def total_combinations(N, k):
+def total_combinations(N: Collection, k: int) -> int:
     combs = combinations(N, k)
 
     return len([roll for roll in combs])
 
 
-def calc_success_probability(typedice, numdice, targetside):
-    N = range(1, typedice + 1)
+def calc_success_probability(
+    typedice: int, numdice: int, targetside: int
+) -> float:
+    N: Collection = list(range(1, typedice + 1))
 
-    a = success_combinations(N, numdice, targetside)
-    b = total_combinations(N, numdice)
+    a: int = success_combinations(N, numdice, targetside)
+    b: int = total_combinations(N, numdice)
 
     # Prob. of Success = Successful Combs. / Total Combs.
-    probability = float(a)/b
+    probability: float = float(a)/b
 
     return probability
 
 
-def print_success_prob(typedice, numdice, targetside):
+def print_success_prob(
+    typedice: int, numdice: int, targetside: int
+) -> None:
     probability = calc_success_probability(typedice, numdice, targetside)
 
     print(
