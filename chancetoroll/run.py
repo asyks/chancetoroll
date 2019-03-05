@@ -2,49 +2,47 @@
 
 import argparse
 
-from rollem import print_success_prob
+from notation import parse_dstr
+from out import print_success_prob
+from rollem import calc_success_probability
 
 
 def main() -> None:
     parser: argparse.ArgumentParser = argparse.ArgumentParser(
         description=(
-            'Determine the probability of rolling '
-            'x or greater on n individual dice.'
+            "Determine the probability of rolling "
+            "x or greater on n individual dice."
         )
     )
     parser.add_argument(
-        'typedice',
-        type=int,
+        "dice",
+        type=str,
         help=(
-            'The type of dice to roll '
-            '(4 = d4, 6 = d6, 20 = d20, etc.)'
+            "The number and type of dice to roll "
+            "(e.g. 3d6 is three six-sided dice, 1d20 is one twenty-sided dice)"
         )
     )
     parser.add_argument(
-        'numdice',
+        "targetside",
         type=int,
         help=(
-            'The number of dice to roll '
-            '(1 = roll 1 dice, 2 = roll 2 dice, etc.)'
-        )
-    )
-    parser.add_argument(
-        'targetside',
-        type=int,
-        help=(
-            'The value a single dice must beat to be a success '
-            '(e.g. 5 = rolls of 5 or higher are a success)'
+            "The value a single dice must beat to be a success "
+            "(e.g. 5 = rolls of 5 or higher are a success)"
         )
     )
 
     args = parser.parse_args()
 
-    print_success_prob(
-        args.typedice,
-        args.numdice,
-        args.targetside,
+    num: int
+    dice_type: int
+    num, dice_type = parse_dstr(args.dice)
+
+    probability: float = calc_success_probability(
+        dice_type, num, args.targetside
     )
 
+    print_success_prob(dice_type, num, args.targetside, probability)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
