@@ -39,18 +39,3 @@ def calc_success_probability(
     probability: float = float(a)/b
 
     return probability
-
-
-def print_success_prob(
-    typedice: int, numdice: int, targetside: int
-) -> None:
-    probability = calc_success_probability(typedice, numdice, targetside)
-
-    print(
-        "Rolling {}d{}, probability of beating a {} = {}".format(
-            numdice,
-            typedice,
-            targetside,
-            probability,
-        )
-    )

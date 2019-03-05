@@ -3,7 +3,8 @@
 import argparse
 
 from notation import parse_dstr
-from rollem import print_success_prob
+from out import print_success_prob
+from rollem import calc_success_probability
 
 
 def main() -> None:
@@ -36,7 +37,11 @@ def main() -> None:
     dice_type: int
     num, dice_type = parse_dstr(args.dice)
 
-    print_success_prob(dice_type, num, args.targetside)
+    probability: float = calc_success_probability(
+        dice_type, num, args.targetside
+    )
+
+    print_success_prob(dice_type, num, args.targetside, probability)
 
 
 if __name__ == "__main__":
