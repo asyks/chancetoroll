@@ -2,11 +2,13 @@
 *.py[cod]
 
 # Distribution / packaging
+.eggs/
 .Python
 dist/
 lib/
 sdist/
 MANIFEST
+*.egg-info
 
 # PyInstaller
 *.manifest

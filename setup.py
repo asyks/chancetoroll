@@ -1,12 +1,6 @@
-from distutils.core import setup
+#!/usr/bin/env python
 
-setup(
-    name='chancetoroll',
-    version='0.1',
-    packages=['chancetoroll',],
-    license='MIT License',
-    long_description=open('README').read(),
-    author='asyks',
-    author_email='aaron@aaronsykes.com',
-    url='http://aaronsykes.com',
-)
+from setuptools import setup
+
+
+setup(setup_cfg=True)
