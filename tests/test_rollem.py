@@ -4,6 +4,18 @@ from chancetoroll import rollem
 
 
 class TestCalcSuccessProbability(TestCase):
+    def test_1d6_target_6(self):
+        self.assertEqual(
+            rollem.calc_success_probability(typedice=6, numdice=1, targetside=6),
+            1.0 / 6
+        )
+
+    def test_1d8_target_8(self):
+        self.assertEqual(
+            rollem.calc_success_probability(typedice=8, numdice=1, targetside=8),
+            1.0 / 8
+        )
+
     def test_2d6_target_1(self):
         self.assertEqual(
             rollem.calc_success_probability(typedice=6, numdice=2, targetside=1), 1.0
