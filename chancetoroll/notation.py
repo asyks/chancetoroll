@@ -8,7 +8,7 @@ def parse_dstr(dstr: str) -> Tuple[int, int]:
     """
     num: int
     dice_type: int
-    parsed_dstr: List = dstr.strip().split('d')
+    parsed_dstr: List = dstr.strip().split("d")
 
     if len(parsed_dstr) > 2:
         raise Exception("d notated string contains not readable")
