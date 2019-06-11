@@ -1,46 +1,35 @@
 from itertools import combinations
 
-from typing import Iterable, List, Tuple
+from typing import Tuple
 
 
-Collection = List[int]
+NumSet = Tuple[int]
+Combinations = Tuple[Tuple[int, ...]]
 
 
-def roll_success(N: Collection, i: int, roll: tuple) -> bool:
-    """ If any roll >= i return True """
-    return any([j in roll for j in N[N.index(i):]])
+def successful(S: NumSet, target: int, outcome: tuple) -> bool:
+    """ If any roll >= target return True """
+    return any([j in outcome for j in S[S.index(target):]])
 
 
-def success_combinations(N: Collection, k: int, i: int) -> int:
+def calc_success_probability(size: int, k: int, target: int) -> float:
     """
-    Determine the number of success outcomes given an iterable of sides,
-    the number of dice, and the target value
+    Calculate the probability of rolling >= <target> on <numdice> of type <size>
+
+    First, determine the number of possible outcomes given an iterable of sides, and
+    the number of dice. Next, determine the number of success outcomes given an
+    iterable of sides, the number of dice, and the target value.
     """
-    combs: Iterable[Tuple[int, ...]] = combinations(N, k)
+    S: NumSet = tuple(range(1, size + 1))
 
-    return len([roll for roll in combs if roll_success(N, i, roll)])
+    total_combinations: Combinations = tuple(combinations(S, k))
 
-
-def total_combinations(N: Collection, k: int) -> int:
-    """
-    Determine the number of possible outcomes given an iterable of sides,
-    and the number of dice
-    """
-    combs = combinations(N, k)
-
-    return len([roll for roll in combs])
-
-
-def calc_success_probability(typedice: int, numdice: int, targetside: int) -> float:
-    """
-    Calculate the probability of rolling >= <targetside> on <numdice> of type <typedice>
-    """
-    N: Collection = list(range(1, typedice + 1))
-
-    a: int = success_combinations(N, numdice, targetside)
-    b: int = total_combinations(N, numdice)
+    total: float = float(len([True for outcome in total_combinations]))
+    success_combinations: float = float(len(
+        [True for outcome in total_combinations if successful(S, target, outcome)]
+    ))
 
     # Prob. of Success = Successful Combs. / Total Combs.
-    probability: float = float(a) / b
+    probability: float = success_combinations / total
 
     return probability
