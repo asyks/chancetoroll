@@ -2,9 +2,8 @@
 
 import argparse
 
-from notation import parse_dstr
-from out import print_success_prob
-from rollem import calc_success_probability
+from calc import calc_success_probability
+from utils import parse_dstr, print_success_prob
 
 
 def main() -> None:
