@@ -2,8 +2,8 @@
 
 import argparse
 
-from calc import probability_of_success
-from utils import parse_dstr, print_success_prob
+import calc
+import utils
 
 
 def main() -> None:
@@ -35,10 +35,12 @@ def main() -> None:
     num_dice: int
     dice_type: int
 
-    num_dice, dice_type = parse_dstr(args.dice)
-    probability: float = probability_of_success(dice_type, num_dice, args.targetside)
+    num_dice, dice_type = utils.parse_dstr(args.dice)
+    probability: float = calc.probability_of_success(
+        dice_type, num_dice, args.targetside
+    )
 
-    print_success_prob(dice_type, num_dice, args.targetside, probability)
+    utils.print_success_prob(dice_type, num_dice, args.targetside, probability)
 
 
 if __name__ == "__main__":
