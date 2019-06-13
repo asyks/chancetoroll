@@ -32,15 +32,13 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    num: int
+    num_dice: int
     dice_type: int
-    num, dice_type = parse_dstr(args.dice)
 
-    probability: float = calc_success_probability(
-        dice_type, num, args.targetside
-    )
+    num_dice, dice_type = parse_dstr(args.dice)
+    probability: float = calc_success_probability(dice_type, num_dice, args.targetside)
 
-    print_success_prob(dice_type, num, args.targetside, probability)
+    print_success_prob(dice_type, num_dice, args.targetside, probability)
 
 
 if __name__ == "__main__":

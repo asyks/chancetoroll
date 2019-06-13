@@ -20,12 +20,12 @@ def parse_dstr(dstr: str) -> Tuple[int, int]:
 
 
 def print_success_prob(
-    typedice: int, numdice: int, targetside: int, probability: float
+    dice_type: int, num_dice: int, target: int, probability: float
 ) -> None:
     """
     Print the calculated success probability as a formatted string
     """
     print(
-        f"Rolling {numdice}d{typedice}, probability of "
-        f"beating a {targetside} is {probability:.4f}"
+        f"Rolling {num_dice}d{dice_type}, probability of "
+        f"beating a {target} is {probability:.4f}"
     )
