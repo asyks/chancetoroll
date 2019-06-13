@@ -2,7 +2,7 @@
 
 import argparse
 
-from calc import calc_success_probability
+from calc import probability_of_success
 from utils import parse_dstr, print_success_prob
 
 
@@ -36,7 +36,7 @@ def main() -> None:
     dice_type: int
 
     num_dice, dice_type = parse_dstr(args.dice)
-    probability: float = calc_success_probability(dice_type, num_dice, args.targetside)
+    probability: float = probability_of_success(dice_type, num_dice, args.targetside)
 
     print_success_prob(dice_type, num_dice, args.targetside, probability)
 

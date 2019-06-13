@@ -7,18 +7,7 @@ NumSet = Tuple[int]
 Combinations = Tuple[Tuple[int]]
 
 
-def successful(S: NumSet, target: int, outcome: tuple) -> bool:
-    """
-    If any roll >= target return True
-
-    :param S: the set of dice sides being tested, e.g. d6 = (1,2,3,4,5,6)
-    :param target: the threshold for successful outcomes
-    :param outcome: the selection to test for success
-    """
-    return any([j in outcome for j in S[S.index(target):]])
-
-
-def calc_success_probability(size: int, k: int, target: int) -> float:
+def probability_of_success(size: int, k: int, target: int) -> float:
     """
     Calculate the probability of rolling >= <target> on <k> of type <size>
 
@@ -30,13 +19,15 @@ def calc_success_probability(size: int, k: int, target: int) -> float:
     :param k: the number of dice being tested
     :param target: the threshold for successful outcomes
     """
-    S: NumSet = tuple(range(1, size + 1))
+    S: range = range(1, size + 1)  # dice sides being tested, e.g. d6 = (1,2,3,4,5,6)
 
     total_combinations: Combinations = tuple(combinations(S, k))
 
-    total: float = float(len([True for outcome in total_combinations]))
-    success_combinations: float = float(len(
-        [True for outcome in total_combinations if successful(S, target, outcome)]
-    ))
+    total: float = 0
+    successes: float = 0
+    for combination in total_combinations:
+        if any((True for outcome in combination if outcome >= target)):
+            successes += 1
+        total += 1
 
-    return success_combinations / total
+    return successes / total
