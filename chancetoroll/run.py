@@ -2,8 +2,8 @@
 
 import argparse
 
-import calc
-import utils
+from . import calc
+from . import utils
 
 
 def main() -> None:
