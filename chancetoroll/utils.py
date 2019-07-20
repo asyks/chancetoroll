@@ -11,7 +11,7 @@ def parse_dstr(dstr: str) -> Tuple[int, int]:
     parsed_dstr: List = dstr.strip().split("d")
 
     if len(parsed_dstr) > 2:
-        raise Exception("d notated string contains not readable")
+        raise Exception("d notated string format not unrecognized")
 
     num = int(parsed_dstr[0])
     dice_type = int(parsed_dstr[1])
